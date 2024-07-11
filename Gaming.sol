@@ -43,3 +43,24 @@ contract Gaming {
     event PlayerWon(address player, uint amount, uint mysteryNumber, uint displayedNumber);
     event PlayerLost(address player, uint amount, uint mysteryNumber, uint displayedNumber);
                
+
+
+
+    event GameFunded(address funder, uint amount);
+
+    function mysteryNumber() private view returns (uint) {
+        uint randomNumber = uint(blockhash(block.number-1))%10 + 1;
+        return randomNumber;
+    }
+
+    function determineWinner(uint number, uint display, bool guess) public pure returns (bool) {
+        if (guess == true) {
+            if (number > display) {
+                return true;
+            }
+            if (number < display) {
+                return false;
+            }
+        } else if (guess == false) {
+            if (number > display) {
+           

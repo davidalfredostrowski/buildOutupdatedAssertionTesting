@@ -21,3 +21,25 @@ contract Gaming {
 
     function getLosses() external payable returns ( uint ) {
         return losses;
+   }
+
+
+    function getLosses333() public payable returns ( uint ) {
+        return losses;
+    }
+
+    constructor() public payable {
+        owner = payable(msg.sender);
+        online = true;
+        wins = 0;
+        losses = 0;
+    }
+
+    modifier isOwner() {
+        require(msg.sender == owner, "Only owner can call this function");
+        _;
+    }
+
+    event PlayerWon(address player, uint amount, uint mysteryNumber, uint displayedNumber);
+    event PlayerLost(address player, uint amount, uint mysteryNumber, uint displayedNumber);
+               

@@ -352,6 +352,81 @@ Promise {
 >
 
 
+> cd.receiveFunds({value: ethers.parseEther("0.5")})
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 6640,
+  [Symbol(trigger_async_id_symbol)]: 14
+}
+> await ethers.provider.getBalance(cd.target)
+500000000000000000n
+> cd.receiveFunds({value: ethers.parseEther("2.5")})
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 7157,
+  [Symbol(trigger_async_id_symbol)]: 14
+}
+> await ethers.provider.getBalance(cd.target)
+3000000000000000000n
+> await ethers.provider.getBalance(signers[0])
+9996999685407750569509n
+> await ethers.provider.getBalance(signers[1])
+10000000000000000000000n
+> await ethers.provider.getBalance(signers[3])
+10000000000000000000000n
+> cd.receiveFunds({value: ethers.parseEther("5.5")})
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 8255,
+  [Symbol(trigger_async_id_symbol)]: 14
+}
+> await ethers.provider.getBalance(cd.target)
+8500000000000000000n
+> await ethers.provider.getBalance(signers[0])
+9991499670615022148112n
+> cd.withdrawFunds(signers[1], ethers.parseEther("2.0"))
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 8883,
+  [Symbol(trigger_async_id_symbol)]: 14
+}
+> await cd.withdrawFunds(signers[1], ethers.parseEther("2.0"))
+ContractTransactionResponse {
+  provider: HardhatEthersProvider {
+    _hardhatProvider: LazyInitializationProviderAdapter {
+      _providerFactory: [AsyncFunction (anonymous)],
+      _emitter: [EventEmitter],
+      _initializingPromise: [Promise],
+      provider: [BackwardsCompatibilityProviderAdapter]
+    },
+    _networkName: 'localhost',
+    _blockListeners: [],
+    _transactionHashListeners: Map(0) {},
+    _eventListeners: []
+  },
+  blockNumber: 7,
+  blockHash: '0xb53fdc24f3b97b36fdeb26e82a02d32dbaed8b98d1e0b7818ea757b556d43842',
+  index: undefined,
+  hash: '0xc2c85713b3d0bdfe2b15d581050e653619ce70c811ed79e869261799e5f3ab42',
+  type: 2,
+  to: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  nonce: 6,
+  gasLimit: 30000000n,
+  gasPrice: 498689557n,
+  maxPriorityFeePerGas: 119577246n,
+  maxFeePerGas: 498689557n,
+  maxFeePerBlobGas: null,
+  data: '0xc107532900000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000001bc16d674ec80000',
+  value: 0n,
+  chainId: 31337n,
+  signature: Signature { r: "0x25002aff00569b902b4537dc2b68bba9f42ab935314b25f8bdfe4b9ed5f7e74c", s: "0x0bf44e374685a910a0d947f93d1d0e0e2b2952272848555543591560f4bce4f0", yParity: 0, networkV: null },
+  accessList: [],
+  blobVersionedHashes: null
+}
+> await ethers.provider.getBalance(signers[1])
+10004000000000000000000n
+>
 
 
 

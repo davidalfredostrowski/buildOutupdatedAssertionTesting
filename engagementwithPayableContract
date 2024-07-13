@@ -428,6 +428,81 @@ ContractTransactionResponse {
 10004000000000000000000n
 >
 
+> const balance2 = await ethers.provider.getBalance(signers[2])
+undefined
+> balance2
+10000000000000000000000n
+> await cd.withdrawFunds(signers[2], ethers.parseEther("2.0"))
+ContractTransactionResponse {
+  provider: HardhatEthersProvider {
+    _hardhatProvider: LazyInitializationProviderAdapter {
+      _providerFactory: [AsyncFunction (anonymous)],
+      _emitter: [EventEmitter],
+      _initializingPromise: [Promise],
+      provider: [BackwardsCompatibilityProviderAdapter]
+    },
+    _networkName: 'localhost',
+    _blockListeners: [],
+    _transactionHashListeners: Map(0) {},
+    _eventListeners: []
+  },
+  blockNumber: 8,
+  blockHash: '0xa9a61f70081520b869e0161434ee870843a5070e332a788965727f57b5706dc4',
+  index: undefined,
+  hash: '0x370f545926bc9d822a0ee34ae6c0e5790574759959396d21256ccb0ecdb8da1a',
+  type: 2,
+  to: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  nonce: 7,
+  gasLimit: 30000000n,
+  gasPrice: 436491612n,
+  maxPriorityFeePerGas: 104663240n,
+  maxFeePerGas: 436491612n,
+  maxFeePerBlobGas: null,
+  data: '0xc10753290000000000000000000000003c44cdddb6a900fa2b585dd299e03d12fa4293bc0000000000000000000000000000000000000000000000001bc16d674ec80000',
+  value: 0n,
+  chainId: 31337n,
+  signature: Signature { r: "0xac13ed3ceaf62786bafedfbed8133c4f3c04855c0df08df1583e29739d22988b", s: "0x302c5986426f199d44b2052540f8f753a04551991eaf97959513ea557f34a412", yParity: 1, networkV: null },
+  accessList: [],
+  blobVersionedHashes: null
+}
+> const balance2new = await ethers.provider.getBalance(signers[2])
+undefined
+> balance2new
+10002000000000000000000n
+> assert.equal(prebalanceInEther, ( postBalanceInEther + 10 ), 'the amount will have decreased by 10 either')
+Uncaught ReferenceError: prebalanceInEther is not defined
+> assert.equal((balance2 + ethers.parseEther("2.0")), (balance2new ), 'the amount will have increased by 2 ether')
+undefined
+> const output = assert.equal((balance2 + ethers.parseEther("2.0")), (balance2new ), 'the amount will have increased by 2 ether')
+undefined
+> output
+undefined
+> const output = assert.equal((balance2 + ethers.parseEther("2.0")), (balance2new ), 'the amount will have increased by 2 ether')
+Uncaught SyntaxError: Identifier 'output' has already been declared
+> assert.equal((balance2 + ethers.parseEther("2.0")), (balance2new ), 'the amount will have increased by 2 ether')
+undefined
+> assert.equal((balance2 + ethers.parseEther("3.0")), (balance2new ), 'the amount will have increased by 2 ether')
+Uncaught AssertionError [ERR_ASSERTION]: the amount will have increased by 2 ether
+    at REPL269:1:8
+    at Script.runInThisContext (node:vm:122:12)
+    at REPLServer.defaultEval (node:repl:594:29)
+    at bound (node:domain:433:15)
+    at REPLServer.runBound [as eval] (node:domain:444:12)
+    at REPLServer.onLine (node:repl:924:10)
+    at REPLServer.emit (node:events:529:35)
+    at REPLServer.emit (node:domain:489:12)
+    at REPLServer.[_onLine] [as _onLine] (node:internal/readline/interface:423:12)
+    at REPLServer.[_line] [as _line] (node:internal/readline/interface:894:18) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 10003000000000000000000n,
+  expected: 10002000000000000000000n,
+  operator: '=='
+}
+> assert.equal((balance2 + ethers.parseEther("2.0")), (balance2new ), 'the amount will have increased by 2 ether')
+undefined
+>
 
 
 
